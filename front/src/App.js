@@ -3,6 +3,7 @@ import "./App.css";
 import { IconButton, Dialog } from "@material-ui/core";
 import Pagination from "@material-ui/lab/Pagination";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
+import { StylesProvider } from "@material-ui/core/styles";
 
 /* Internal */
 import { EgurreLogo } from "./common/EgurreLogo";
@@ -24,32 +25,34 @@ function App() {
   } = useGym();
 
   return (
-    <div className="App">
-      <MainContainer>
-        {/* Modal  */}
-        <Dialog open={modal} onClose={() => setModal(false)}>
-          <GymForm gymFormProps={gymFormProps}></GymForm>
-        </Dialog>
-        {/* Main view */}
+    <StylesProvider injectFirst>
+      <div className="App">
+        <MainContainer>
+          {/* Modal  */}
+          <Dialog open={modal} onClose={() => setModal(false)}>
+            <GymForm gymFormProps={gymFormProps}></GymForm>
+          </Dialog>
+          {/* Main view */}
 
-        <MainContentContainer>
-          <EgurreLogo />
+          <MainContentContainer>
+            <EgurreLogo />
 
-          <IconButton onClick={() => handleNew()}>
-            <AddCircleIcon />
-          </IconButton>
+            <IconButton onClick={() => handleNew()}>
+              <AddCircleIcon />
+            </IconButton>
 
-          <GymCardList gymCardListProps={gymCardListProps}></GymCardList>
+            <GymCardList gymCardListProps={gymCardListProps}></GymCardList>
 
-          <Pagination
-            onChange={(event, page) => setPage(page)}
-            styles={{ marginTop: 50 }}
-            count={paginationCount}
-            variant="outlined"
-          />
-        </MainContentContainer>
-      </MainContainer>
-    </div>
+            <Pagination
+              onChange={(event, page) => setPage(page)}
+              styles={{ marginTop: 50 }}
+              count={paginationCount}
+              variant="outlined"
+            />
+          </MainContentContainer>
+        </MainContainer>
+      </div>
+    </StylesProvider>
   );
 }
 

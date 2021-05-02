@@ -3,6 +3,7 @@ import { GymFormContainer } from "./GymFormContainer";
 import { GymFormTextField } from "./GymFormTextField";
 import { GymFormIconButton } from "./GymFormIconButton";
 import { Spinner } from "../../common/Spinner";
+import { StylesProvider } from "@material-ui/core";
 
 export default function GymForm({ gymFormProps }) {
   const {
