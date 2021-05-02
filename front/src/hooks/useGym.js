@@ -3,6 +3,8 @@ import getGyms from "../services/gyms/getGyms";
 import deleteGym from "../services/gyms/deleteGym";
 import createGym from "../services/gyms/createGym";
 import updateGym from "../services/gyms/updateGym";
+import moment from "moment";
+import { showFailedRequestAlert } from "../utils/showFailedRequestAlert";
 
 export function useGym() {
   const [loading, setLoading] = useState(false);
@@ -52,8 +54,10 @@ export function useGym() {
       }
       setSpinner(false);
     } catch (err) {
-      /* Sweet alert something went wrong */
       setSpinner(false);
+      setModal(false);
+      /* TODO show req error on sweet alert */
+      showFailedRequestAlert();
     }
   };
 
@@ -61,7 +65,6 @@ export function useGym() {
     try {
       await setSpinner(true);
       const res = await updateGym(gymId, name, phone, openedSince);
-      console.log(res);
       if (res.status === 200) {
         await setModal(false);
         await fetchGyms(page);
@@ -69,8 +72,17 @@ export function useGym() {
       await setSpinner(false);
       await setIsUpadting(false);
     } catch (error) {
+      await setModal(false);
       await setSpinner(false);
+      /* TODO Show SweetAlert with req error */
+      showFailedRequestAlert();
     }
+  };
+
+  const resetForm = async () => {
+    await setName("");
+    await setPhone("");
+    await setOpenedSince("");
   };
 
   const handleEdit = async (name, phone, openedSince, gymId) => {
@@ -78,14 +90,12 @@ export function useGym() {
     await setGymId(gymId);
     await setName(name);
     await setPhone(phone);
-    await setOpenedSince();
+    await setOpenedSince(moment(openedSince).format("yyyy-MM-DD"));
     setModal(true);
   };
 
   const handleNew = async () => {
-    await setName("");
-    await setPhone("");
-    await setOpenedSince("dd/mm/yyyy");
+    resetForm();
     setModal(true);
   };
 

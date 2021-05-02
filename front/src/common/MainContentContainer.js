@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { Grid } from "@material-ui/core";
 
-export const MainContainer = styled(Grid)`
+export const MainContentContainer = styled(Grid)`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
-  background-color: #f3f3f3;
+  justify-items: center;
+  text-align: center;
 `;
 
-MainContainer.defaultProps = {
+MainContentContainer.defaultProps = {
   container: true,
-  lg: 12,
-  md: 12,
+  lg: 8,
+  md: 8,
 };

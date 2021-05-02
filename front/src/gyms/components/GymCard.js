@@ -2,6 +2,7 @@
 import { IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
+import moment from "moment";
 
 /* Internal */
 import { GymCardContainer } from "./GymCardContainer";
@@ -43,7 +44,9 @@ export default function GymCard({
               borderRight: "1px solid black",
             }}
           >
-            <p style={{ fontSize: "12px" }}>{openedSince}</p>
+            <p style={{ fontSize: "12px" }}>
+              {moment(openedSince).format("l")}
+            </p>
           </div>
 
           <GymCardActionsContainer>
