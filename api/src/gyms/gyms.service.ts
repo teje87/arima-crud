@@ -28,7 +28,6 @@ export class GymsService {
   }
 
   async remove(id: number) {
-    console.log(id);
     return await this.gymsRepository.delete(id);
   }
 }

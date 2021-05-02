@@ -28,7 +28,6 @@ export function useGym() {
     await setGyms(gymsData);
     await setPaginationCount(pageAmount);
     await setLoading(false);
-    console.log(gyms);
   };
 
   const handleDelete = async (gymId) => {
