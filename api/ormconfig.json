@@ -1,0 +1,12 @@
+{
+    "type": "postgres",
+    "host": "postgres",
+    "port": 5432,
+    "username": "egurre",
+    "password": "egurre",
+    "database": "egurre",
+    "entities": ["dist/**/*.entity{.ts,.js}"],
+    "synchronize": true,
+    "seeds": ["dist/**/database/seeds/*.js"],
+    "factories": ["dist/**/database/factories/*.js"]
+  }
