@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { IconButton } from "@material-ui/core";
 
 export const GymFormIconButton = styled(IconButton)`
-  background-color: #c83672;
+  background-color: ${(props) => props.theme.colors.pink};
   margin-top: 50px;
   width: 50px;
   height: 50px;
@@ -10,6 +10,6 @@ export const GymFormIconButton = styled(IconButton)`
   color: white;
 
   &:hover {
-    background-color: #6dbaa1;
+    background-color: ${(props) => props.theme.colors.green};
   }
 `;

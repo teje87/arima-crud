@@ -12,6 +12,8 @@ import GymForm from "./gyms/components/GymForm";
 import GymCardList from "./gyms/components/GymCardList";
 import { MainContainer } from "./common/MainContainer";
 import { MainContentContainer } from "./common/MainContentContainer";
+import { ThemeProvider } from "styled-components";
+import { theme } from './styles/theme'
 
 function App() {
   const {
@@ -26,7 +28,7 @@ function App() {
 
   return (
     <StylesProvider injectFirst>
-      <div className="App">
+      <ThemeProvider theme={theme}>
         <MainContainer>
           {/* Modal  */}
           <Dialog open={modal} onClose={() => setModal(false)}>
@@ -51,7 +53,7 @@ function App() {
             />
           </MainContentContainer>
         </MainContainer>
-      </div>
+        </ThemeProvider>
     </StylesProvider>
   );
 }

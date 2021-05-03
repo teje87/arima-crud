@@ -5,7 +5,7 @@ export const MainContainer = styled(Grid)`
   align-items: center;
   flex-direction: column;
   height: 100vh;
-  background-color: #f3f3f3;
+  background-color: ${props => props.theme.colors.grey};
 `;
 
 MainContainer.defaultProps = {
