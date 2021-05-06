@@ -13,6 +13,7 @@ import { GymCardSubTitleContainer } from "./GymCardSubTitleContainer";
 import { GymCardActionsContainer } from "./GymCardActionsContainer";
 import { GymCardTitle } from "./GymCardTitle";
 import { GymCardSubTitle } from "./GymCardSubTitle";
+import { showDeleteConfirmAlert } from "../../utils/showDeleteConfirmAlert";
 
 export default function GymCard({
   name = "Default name ",
@@ -51,7 +52,7 @@ export default function GymCard({
 
           <GymCardActionsContainer>
             {/* Delete */}
-            <IconButton onClick={() => handleDelete(gymId)}>
+            <IconButton onClick={() => showDeleteConfirmAlert(() => handleDelete(gymId))}>
               <DeleteIcon />
             </IconButton>
 

@@ -37,7 +37,7 @@ export function useGym() {
         await fetchGyms(page);
       }
     } catch (err) {
-      /* Sweet alert something went wrong */
+      throw new Error()
     }
   };
 
