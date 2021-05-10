@@ -18,6 +18,9 @@ export function useGym() {
   const [phone, setPhone] = useState("");
   const [isUpdating, setIsUpadting] = useState(false);
   const [gymId, setGymId] = useState("");
+  const [nameError, setNameError ] = useState(false)
+  const [phoneError, setPhoneError ] = useState(false)
+  const [dateError, setDateError ] = useState(true)
 
   const fetchGyms = async (page) => {
     await setLoading(true);
@@ -82,6 +85,8 @@ export function useGym() {
     await setName("");
     await setPhone("");
     await setOpenedSince("");
+    await setPhoneError(false)
+    await setNameError(false)
   };
 
   const handleEdit = async (name, phone, openedSince, gymId) => {
@@ -98,10 +103,31 @@ export function useGym() {
     setModal(true);
   };
 
+
+  const validateFields =  () => {
+    const isNameEmpty = name.length === 0 ;
+    const isPhoneEmpty = phone.length === 0;
+    
+    
+    isNameEmpty ? setNameError(true) : setNameError(false)
+    isPhoneEmpty ? setPhoneError(true) : setPhoneError(false)
+    
+    if(isNameEmpty || isPhoneEmpty){
+      return false;
+    }else{
+      return true
+    }
+  }
+
   const handleRequest = (e) => {
-    return isUpdating
+  
+    const isFormValid = validateFields()
+    if(isFormValid){
+      return isUpdating
       ? handleUpdateSubmit(gymId, name, phone, openedSince)
       : handleSubmit(name, phone, openedSince);
+    }
+  
   };
 
   /* UseEffects */
@@ -140,6 +166,8 @@ export function useGym() {
       spinner,
       handleRequest,
       isUpdating,
+      nameError,
+      phoneError
     },
   };
 }

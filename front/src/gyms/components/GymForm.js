@@ -15,16 +15,19 @@ export default function GymForm({ gymFormProps }) {
     openedSince,
     setOpenedSince,
     spinner,
+    nameError,
+    phoneError
   } = gymFormProps;
 
   return (
-    <form>
+    <form autoComplete="off">
       <GymFormContainer>
         <GymFormTextField
           required
           id="outlined-required"
           label="Gym Name"
           variant="outlined"
+          error={nameError}
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -32,6 +35,7 @@ export default function GymForm({ gymFormProps }) {
           required
           id="outlined-required"
           label="Phone"
+          error={phoneError}
           variant="outlined"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
@@ -49,7 +53,7 @@ export default function GymForm({ gymFormProps }) {
           onChange={(e) => setOpenedSince(e.target.value)}
         />
 
-        <GymFormIconButton onClick={() => handleRequest()}>
+        <GymFormIconButton  onClick={() => handleRequest()}>
           {spinner ? <Spinner /> : <SaveAltIcon />}
         </GymFormIconButton>
       </GymFormContainer>
