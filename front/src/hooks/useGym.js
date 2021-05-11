@@ -5,6 +5,7 @@ import createGym from "../services/gyms/createGym";
 import updateGym from "../services/gyms/updateGym";
 import moment from "moment";
 import { showFailedRequestAlert } from "../utils/showFailedRequestAlert";
+import { regex } from '../utils/regex'
 
 export function useGym() {
   const [loading, setLoading] = useState(false);
@@ -81,12 +82,13 @@ export function useGym() {
     }
   };
 
-  const resetForm = async () => {
-    await setName("");
-    await setPhone("");
-    await setOpenedSince("");
-    await setPhoneError(false)
-    await setNameError(false)
+  const resetForm =  () => {
+     setName("");
+     setPhone("");
+     setOpenedSince("");
+     setPhoneError(false)
+     setNameError(false)
+     setDateError(false)
   };
 
   const handleEdit = async (name, phone, openedSince, gymId) => {
@@ -107,12 +109,16 @@ export function useGym() {
   const validateFields =  () => {
     const isNameEmpty = name.length === 0 ;
     const isPhoneEmpty = phone.length === 0;
+    const isDateValid = regex.ddmmyyyyDate.test(openedSince);
+    
     
     
     isNameEmpty ? setNameError(true) : setNameError(false)
     isPhoneEmpty ? setPhoneError(true) : setPhoneError(false)
+    isDateValid ? setDateError(false) : setDateError(true)
+
     
-    if(isNameEmpty || isPhoneEmpty){
+    if(isNameEmpty || isPhoneEmpty || !isDateValid){
       return false;
     }else{
       return true
@@ -167,7 +173,8 @@ export function useGym() {
       handleRequest,
       isUpdating,
       nameError,
-      phoneError
+      phoneError,
+      dateError
     },
   };
 }

@@ -16,7 +16,8 @@ export default function GymForm({ gymFormProps }) {
     setOpenedSince,
     spinner,
     nameError,
-    phoneError
+    phoneError,
+    dateError
   } = gymFormProps;
 
   return (
@@ -43,6 +44,7 @@ export default function GymForm({ gymFormProps }) {
         <GymFormTextField
           id="date"
           label="Opened Since"
+          error={dateError}
           type="date"
           format="yyyy/mm/dd"
           defaultValue={openedSince}
